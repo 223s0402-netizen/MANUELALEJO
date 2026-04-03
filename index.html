@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIMERA - Supraciclaje con Estilo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+        :root {
+            /* Paleta Minimalista proporcionada */
+            --color-deep: #1E2A39;    /* Azul Petróleo Profundo */
+            --color-accent: #A67C52;  /* Tono Tierra / Cuero */
+            --color-neutral: #D9D2C5; /* Beige arena */
+            --color-soft: #F4F1ED;    /* Blanco roto / Crema */
+            --color-gray: #7A7A7A;    /* Gris elegante */
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--color-soft);
+            color: var(--color-deep);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-kimera-gradient {
+            background: linear-gradient(135deg, var(--color-deep) 0%, #2c3e50 100%);
+        }
+
+        .text-accent { color: var(--color-accent); }
+        .bg-accent { background-color: var(--color-accent); }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .image-container {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .image-container img {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .image-container:hover img {
+            transform: scale(1.08);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl font-bold tracking-widest brand-font text-deep">KIMERA</span>
+            </div>
+            <div class="hidden md:flex space-x-10 font-medium text-sm uppercase tracking-widest">
+                <a href="#inicio" class="nav-link hover:text-accent">Colección</a>
+                <a href="#proceso" class="nav-link hover:text-accent">Filosofía</a>
+                <a href="#productos" class="nav-link hover:text-accent">Piezas</a>
+                <a href="#contacto" class="nav-link hover:text-accent">Contacto</a>
+            </div>
+            <div class="flex items-center space-x-5">
+                <button class="text-deep hover:text-accent transition"><i class="fas fa-search"></i></button>
+                <button class="bg-deep text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-accent transition shadow-lg">Tienda</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-soft">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <span class="text-accent font-bold tracking-[0.3em] uppercase text-xs mb-4 block animate-pulse">Handmade & Sustainable</span>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8 text-deep">
+                    Transformación con <br><span class="italic text-accent">Alma Inmortal.</span>
+                </h1>
+                <p class="text-lg text-gray-500 mb-10 max-w-lg leading-relaxed">
+                    KIMERA nace de la fusión entre lo olvidado y lo vanguardista. Creamos piezas únicas a través del supraciclaje de mezclilla premium, demostrando que la moda consciente es el verdadero lujo.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#productos" class="bg-deep text-white px-10 py-4 rounded-full font-bold hover:bg-accent transition transform hover:-translate-y-1 shadow-xl">Ver Colección</a>
+                    <a href="#proceso" class="border border-deep text-deep px-10 py-4 rounded-full font-bold hover:bg-deep hover:text-white transition transform hover:-translate-y-1">Nuestra Historia</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="image-container relative z-10 floating">
+                    <img src="All.jpg" alt="[Colección Completa Kimera]" class="w-full h-auto shadow-2xl">
+                </div>
+                <!-- Decoración -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-neutral/30 rounded-full blur-3xl -z-10"></div>
+                <div class="absolute -bottom-10 -left-10 w-60 h-60 bg-accent/20 rounded-full blur-3xl -z-10"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Filosofía / Proceso -->
+    <section id="proceso" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2 fade-in-up">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="image-container mt-8">
+                            <img src="denim patch.jpg" alt="[Detalle de Costura]" class="w-full h-64 object-cover shadow-lg">
+                        </div>
+                        <div class="image-container">
+                            <img src="descarga (3).jpg" alt="[Bolso Kimera]" class="w-full h-64 object-cover shadow-lg">
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 fade-in-up">
+                    <h2 class="text-4xl font-bold mb-8 text-deep leading-tight">Innovación que respeta el <span class="text-accent italic">pasado.</span></h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        En KIMERA, aplicamos **innovación ecológica** para resolver el problema del desperdicio textil. Cada retal de mezclilla es seleccionado, desinfectado y rediseñado mediante técnicas artesanales.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-soft rounded-full flex items-center justify-center text-accent flex-shrink-0">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-deep uppercase tracking-wider text-sm">Calidad Superior</h4>
+                                <p class="text-gray-500 text-sm">Mezclilla seleccionada por su resistencia y carácter.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-soft rounded-full flex items-center justify-center text-accent flex-shrink-0">
+                                <i class="fas fa-earth-americas"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-deep uppercase tracking-wider text-sm">Impacto Cero</h4>
+                                <p class="text-gray-500 text-sm">Reducción directa de desechos en vertederos locales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de Productos -->
+    <section id="productos" class="py-24 bg-soft">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16 fade-in-up">
+                <div>
+                    <span class="text-accent font-bold uppercase tracking-widest text-xs">Exclusividad Artesanal</span>
+                    <h2 class="text-4xl font-bold text-deep mt-2">Nuestras Piezas</h2>
+                </div>
+                <button class="text-deep font-bold border-b-2 border-accent pb-1 hover:text-accent transition">Ver catálogo completo</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Producto 1 -->
+                <div class="group fade-in-up">
+                    <div class="image-container mb-6 relative">
+                        <img src="Фото 919323610750 из альбома ☼ ДЖИНСОВЫЕ ПЕРЕДЕЛКИ_ Смотрите в группе ИЗ ТОГО, ЧТО ПОД РУКАМИ - рукоделиe, декор, дизайн в ОК.jpg" alt="[Bolso de Hombro Kimera]" class="w-full h-[400px] object-cover">
+                        <div class="absolute inset-0 bg-deep/20 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                            <button class="bg-white text-deep px-6 py-2 rounded-full font-bold shadow-xl">Vista Rápida</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-deep">Bolso Hombro "Patina"</h3>
+                    <p class="text-accent font-bold mt-1">$450 MXN</p>
+                    <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">Edición Única</p>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="group fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="image-container mb-6 relative">
+                        <img src="descarga (3).jpg" alt="[Tote Bag Kimera]" class="w-full h-[400px] object-cover">
+                        <div class="absolute inset-0 bg-deep/20 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                            <button class="bg-white text-deep px-6 py-2 rounded-full font-bold shadow-xl">Vista Rápida</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-deep">Tote Bag "Kimera Core"</h3>
+                    <p class="text-accent font-bold mt-1">$580 MXN</p>
+                    <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">Supraciclado Premium</p>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="group fade-in-up" style="transition-delay: 0.4s;">
+                    <div class="image-container mb-6 relative">
+                        <div class="w-full h-[400px] bg-neutral flex items-center justify-center">
+                            <img src="All.jpg" alt="[Nuevos Accesorios]" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-deep/20 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+                            <button class="bg-white text-deep px-6 py-2 rounded-full font-bold shadow-xl">Vista Rápida</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-deep">Set Organizador "Eco"</h3>
+                    <p class="text-accent font-bold mt-1">$320 MXN</p>
+                    <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">Innovación Frugal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto -->
+    <footer id="contacto" class="bg-deep text-soft pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-4xl font-bold tracking-widest brand-font text-accent block mb-6">KIMERA</span>
+                    <p class="text-gray-400 max-w-sm mb-8">
+                        Redefiniendo el lujo a través de la sostenibilidad. Cada pieza cuenta una historia de transformación y esperanza para nuestro planeta.
+                    </p>
+                    <div class="flex space-x-6 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-xs text-accent">Explorar</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-soft transition">Nuevos Ingresos</a></li>
+                        <li><a href="#" class="hover:text-soft transition">Sobre el Supraciclaje</a></li>
+                        <li><a href="#" class="hover:text-soft transition">Taller Creativo</a></li>
+                        <li><a href="#" class="hover:text-soft transition">Cuidados del Denim</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-xs text-accent">Contacto</h4>
+                    <p class="text-sm text-gray-400 mb-4">Tantoyuca, Veracruz. <br>TecNM Campus Tantoyuca.</p>
+                    <p class="text-sm text-gray-400">hola@kimera.eco</p>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-10 text-center">
+                <p class="text-xs text-gray-500 uppercase tracking-widest">&copy; 2026 KIMERA. Diseñado con propósito y creatividad.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animaciones de revelado al hacer scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
